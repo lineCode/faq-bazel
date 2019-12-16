@@ -1,6 +1,6 @@
-# qa-bazel
+# faq-bazel
 
-Google bazel QA.
+Google bazel FAQ.
 
 ## License
 
