@@ -10,3 +10,9 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
+
+[{*.bzl,*.bazel,*.BUILD,BUILD,WORKSPACE}]
+indent_size = 4
+
+[{*.mk,Makefile}]
+indent_style = tab
