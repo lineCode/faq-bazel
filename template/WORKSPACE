@@ -12,3 +12,49 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 workspace(name = "org_deepinthink_faqcentral_faq_bazel_template")
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "9901bc17138a79135048fb0c107ee7a56e91815ec6594c08cb9a17b80276d62b",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.40.0/rules_nodejs-0.40.0.tar.gz"],
+)
+
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+
+node_repositories(
+    node_repositories = {
+        "10.16.0-darwin_amd64": (
+            "node-v10.16.0-darwin-x64.tar.gz",
+            "node-v10.16.0-darwin-x64",
+            "6c009df1b724026d84ae9a838c5b382662e30f6c5563a0995532f2bece39fa9c",
+        ),
+        "10.16.0-linux_amd64": (
+            "node-v10.16.0-linux-x64.tar.xz",
+            "node-v10.16.0-linux-x64",
+            "1827f5b99084740234de0c506f4dd2202a696ed60f76059696747c34339b9d48",
+        ),
+        "10.16.0-windows_amd64": (
+            "node-v10.16.0-win-x64.zip",
+            "node-v10.16.0-win-x64",
+            "aa22cb357f0fb54ccbc06b19b60e37eefea5d7dd9940912675d3ed988bf9a059",
+        ),
+    },
+    node_version = "10.16.0",
+    package_json = ["//:package.json"],
+    yarn_repositories = {
+        "1.21.1": (
+            "yarn-v1.21.1.tar.gz",
+            "yarn-v1.21.1",
+            "d1d9f4a0f16f5ed484e814afeb98f39b82d4728c6c8beaafb5abc99c02db6674",
+        ),
+    },
+    yarn_version = "1.21.1",
+)
+
+yarn_install(
+    name = "npm",
+    package_json = "//:package.json",
+    yarn_lock = "//:yarn.lock",
+)

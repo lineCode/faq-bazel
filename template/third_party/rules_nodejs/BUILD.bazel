@@ -13,12 +13,4 @@
 # limitations under the License.
 licenses(["notice"])  # Apache v2.0
 
-package(default_visibility = ["//visibility:public"])
-
-filegroup(
-    name = "third_party_license_files",
-    srcs = [
-        "//third_party/docusaurus:LICENSE.docusaurus.MIT",
-        "//third_party/rules_nodejs:LICENSE.rules_nodejs.AL20",
-    ],
-)
+exports_files(["LICENSE.rules_nodejs.AL20"])
