@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+    "website/website"
+  ],
+  "scripts": {
+    "website-build": "yarn workspace website build",
+    "website-start": "yarn workspace website start",
+    "website-publish": "yarn workspace website publish-gh-pages"
+  }
+}

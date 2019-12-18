@@ -1,3 +1,5 @@
 .DS_Store
 .bazelversion
 bazel-*
+yarn.lock
+node_modules
