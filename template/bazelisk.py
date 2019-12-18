@@ -1,0 +1,1 @@
+../wrapper/bazelisk/bazelisk.py
