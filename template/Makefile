@@ -13,12 +13,34 @@
 # limitations under the License.
 BAZEL = "./bazelisk.py"
 
+YARN ?= $(BAZEL) run @nodejs//:yarn
+
 include bazel.mk
 
-.PHONY: clean cleanll
+.PHONY: clean cleanll yarn.lock website-build \
+	website-start website-publish
 
 all: $(BAZEL)
 	$(SLIENT) $(BAZEL) build
 
+yarn.lock: $(BAZEL)
+	$(SLIENT) $(YARN) install
+
+website-build: yarn.lock
+	$(SLIENT) $(YARN) run website-build
+
+website-start: website-build
+	$(SLIENT) $(YARN) run website-start
+
+website-publish: website-build
+	$(SLIENT) $(YARN) run website-publish
+
 clean: bazel-clean
+
 cleanall: bazel-cleanall
+	$(SLIENT) rm -f .DS_Store
+	$(SLIENT) rm -f .bazelversion
+	$(SLIENT) rm -rf node_modules
+	$(SLIENT) rm -rf website/website/node_modules
+	$(SLIENT) rm -rf website/website/i18n
+	$(SLIENT) rm -rf website/website/build/
